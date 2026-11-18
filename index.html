@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>DESA KITA - Multiplayer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LAYAR KUSTOMISASI KARAKTER (AWAL MASUK) -->
+  <div id="login-screen" class="screen">
+    <div class="login-card">
+      <h1>🏡 DESA KITA</h1>
+      <p class="subtitle">Mari bangun desa bersama warga lainnya!</p>
+      
+      <div class="form-group">
+        <label for="player-name">Nama Warga (Maks 12 huruf):</label>
+        <input type="text" id="player-name" maxlength="12" placeholder="Contoh: Budi" value="Warga">
+      </div>
+
+      <div class="customizer-box">
+        <h3>Atur Karakter</h3>
+        
+        <div class="preview-container">
+          <canvas id="preview-canvas" width="100" height="120"></canvas>
+        </div>
+
+        <div class="control-row">
+          <label>Topi:</label>
+          <select id="select-hat">
+            <option value="peci">Peci Hitam (Khas Kades)</option>
+            <option value="caping">Caping Petani</option>
+            <option value="cepol">Rambut Cepol</option>
+            <option value="anak">Topi Anak</option>
+          </select>
+        </div>
+
+        <div class="control-row">
+          <label>Warna Kulit:</label>
+          <input type="color" id="input-skin" value="#f5d0b1">
+        </div>
+
+        <div class="control-row">
+          <label>Warna Baju:</label>
+          <input type="color" id="input-shirt" value="#8B4513">
+        </div>
+
+        <div class="control-row">
+          <label>Ekspresi:</label>
+          <select id="select-expression">
+            <option value="senyum">Senyum Lebar</option>
+            <option value="semangat">Semangat</option>
+            <option value="tenang">Tenang</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="btn-enter" class="btn-primary">Masuk Desa</button>
+    </div>
+  </div>
+
+  <!-- LAYAR UTAMA GAME -->
+  <div id="game-screen" class="screen hidden">
+    <canvas id="game-canvas"></canvas>
+
+    <!-- UI ATAS: INFO DESA & KAS -->
+    <div class="hud-top">
+      <div class="hud-badge">🏡 Rumah: <span id="stat-rumah">0</span></div>
+      <div class="hud-badge">👥 Online: <span id="stat-online">1</span></div>
+    </div>
+
+    <!-- UI BAWAH: KONTROL MOBILE (JOYSTICK & AKSI) -->
+    <div id="mobile-controls" class="mobile-controls">
+      <div id="joystick-base" class="joystick-base">
+        <div id="joystick-stick" class="joystick-stick"></div>
+      </div>
+      <div class="action-buttons">
+        <button id="btn-action" class="btn-action">Aksi / Ambil</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCKET.IO & GAME SCRIPT -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
